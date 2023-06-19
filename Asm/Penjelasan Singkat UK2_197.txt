@@ -1,0 +1,8 @@
+Penjelasan singkat tentang program di UK2_197.asm:
+
+Pertama-tama, kita menginisialisasi nilai-nilai awal dari register A, B, C, D, dan E pada bagian data.
+Setelah itu, kita mendefinisikan label _start sebagai titik awal program.
+Selanjutnya, kita mengalikan nilai register A dengan B menggunakan instruksi MUL, dan menambahkan nilai register C ke hasil perkalian tersebut menggunakan instruksi ADD.
+Kemudian, kita mengalikan nilai register D dengan E menggunakan instruksi MUL, dan melakukan pembagian antara hasil penjumlahan AB+C dengan hasil kali DE menggunakan instruksi DIV.
+Hasil pembagian disimpan ke dalam register Y menggunakan instruksi MOV.
+Terakhir, kita keluar dari program menggunakan instruksi INT.
