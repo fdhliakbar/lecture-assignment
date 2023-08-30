@@ -1,2 +1,6 @@
 # lecture-assignment
-This is a repository for my coursework. If I want to take, or modify the assignment file. I don't have to bother to make the program again. And this is also my track record while on campus.
+my repository for assignments in lectures...
+
+ngeh
+
+![cb51d4debcc2a97fbf627514be7369e3](https://github.com/fdhliakbar/lecture-assignment/assets/104522615/e1fcb687-cb24-4989-b94f-87b3cd30891d)
