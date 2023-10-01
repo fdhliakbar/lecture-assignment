@@ -9,7 +9,7 @@ using namespace std;
 /*******************************
     ~~~ KELOMPOK 2 ~~~
 
-    Kemas Khairunsyah (150)
+    Kemas Khairunsyah (155)
     Bintang Toar Dondok ()
     Muhamad Fadhli Akbar_197
 
