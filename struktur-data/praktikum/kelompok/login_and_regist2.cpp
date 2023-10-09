@@ -260,8 +260,7 @@ class userAuthentication {
                     cout << "Pilihan tidak valid. Silakan pilih 1, 2, atau 3." << endl;
             }
         }
-    };
-
+};
 
 
 
