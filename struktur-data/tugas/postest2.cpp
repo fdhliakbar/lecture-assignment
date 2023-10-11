@@ -2,77 +2,69 @@
 #include <string>
 using namespace std;
 
-// Struct untuk menyimpan data KTP
-struct KTP {
+struct KTPData {
     string nama;
+    int tanggalLahir;
+    string jenisKelamin;
     string alamat;
-    string nomorKTP;
-    int umur;
+    string agama;
+    string status;
+    string pekerjaan;
 };
 
-// Class untuk mengelola input dan output KTP
 class KTPManager {
 public:
-    // Konstruktor untuk menginisialisasi array KTP
-    KTPManager(int jumlahKTP) {
-        dataKTP = new KTP[jumlahKTP];
-        jumlahDataKTP = jumlahKTP;
+    void inputData(KTPData& ktp) {
+        cout << "Nama: ";
+        getline(cin, ktp.nama);
+        
+        cout << "Tanggal Lahir: ";
+        cin >> ktp.tanggalLahir;
+        cin.ignore();
+        
+        cout << "Jenis Kelamin: ";
+        getline(cin, ktp.jenisKelamin);
+        
+        cout << "Alamat: ";
+        getline(cin, ktp.alamat);
+        
+        cout << "Agama: ";
+        getline(cin, ktp.agama);
+        
+        cout << "Status: ";
+        getline(cin, ktp.status);
+        
+        cout << "Pekerjaan: ";
+        getline(cin, ktp.pekerjaan);
     }
 
-    // Destruktor untuk membersihkan memori
-    ~KTPManager() {
-        delete[] dataKTP;
+    void displayData(const KTPData& ktp) {
+        cout << "Nama: " << ktp.nama << endl;
+        cout << "Tanggal Lahir: " << ktp.tanggalLahir << endl;
+        cout << "Jenis Kelamin: " << ktp.jenisKelamin << endl;
+        cout << "Alamat: " << ktp.alamat << endl;
+        cout << "Agama: " << ktp.agama << endl;
+        cout << "Status: " << ktp.status << endl;
+        cout << "Pekerjaan: " << ktp.pekerjaan << endl;
     }
-
-    // Fungsi untuk memasukkan data KTP ke dalam array
-    void inputKTP(int index) {
-        if (index >= 0 && index < jumlahDataKTP) {
-            cout << "Masukkan Nama: ";
-            cin.ignore();
-            getline(cin, dataKTP[index].nama);
-            cout << "Masukkan Alamat: ";
-            getline(cin, dataKTP[index].alamat);
-            cout << "Masukkan Nomor KTP: ";
-            cin >> dataKTP[index].nomorKTP;
-            cout << "Masukkan Umur: ";
-            cin >> dataKTP[index].umur;
-        } else {
-            cout << "Indeks KTP tidak valid." << endl;
-        }
-    }
-
-    // Fungsi untuk menampilkan data KTP dari array
-    void tampilKTP(int index) {
-        if (index >= 0 && index < jumlahDataKTP) {
-            cout << "Nama: " << dataKTP[index].nama << endl;
-            cout << "Alamat: " << dataKTP[index].alamat << endl;
-            cout << "Nomor KTP: " << dataKTP[index].nomorKTP << endl;
-            cout << "Umur: " << dataKTP[index].umur << endl;
-        } else {
-            cout << "Indeks KTP tidak valid." << endl;
-        }
-    }
-
-private:
-    KTP* dataKTP;
-    int jumlahDataKTP;
 };
 
 int main() {
-    const int jumlahKTP = 3; // Ubah sesuai dengan jumlah KTP yang ingin Anda kelola
-    KTPManager manager(jumlahKTP);
+    KTPManager ktpManager;
+    KTPData ktpArray[3];
 
-    // Input data KTP
-    for (int i = 0; i < jumlahKTP; ++i) {
-        cout << "Masukkan Data KTP ke-" << (i + 1) << endl;
-        manager.inputKTP(i);
+
+    for (int i = 0; i < 3; i++) {
+        cout << "\n\n";
+        cout << "Data KTP ke-" << i + 1 << ":" << endl;
+        ktpManager.inputData(ktpArray[i]);
     }
 
-    // Tampilkan data KTP
-    for (int i = 0; i < jumlahKTP; ++i) {
-        cout << "Data KTP ke-" << (i + 1) << endl;
-        manager.tampilKTP(i);
-        cout << endl;
+    system("cls");
+
+    for (int i = 0; i < 3; i++) {
+        cout << "Data KTP ke-" << i + 1 << ":" << endl;
+        ktpManager.displayData(ktpArray[i]);
     }
 
     return 0;
