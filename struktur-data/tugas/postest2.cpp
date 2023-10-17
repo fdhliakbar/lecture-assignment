@@ -39,13 +39,14 @@ public:
     }
 
     void displayData(const KTPData& ktp) {
-        cout << "Nama: " << ktp.nama << endl;
-        cout << "Tanggal Lahir: " << ktp.tanggalLahir << endl;
-        cout << "Jenis Kelamin: " << ktp.jenisKelamin << endl;
-        cout << "Alamat: " << ktp.alamat << endl;
-        cout << "Agama: " << ktp.agama << endl;
-        cout << "Status: " << ktp.status << endl;
-        cout << "Pekerjaan: " << ktp.pekerjaan << endl;
+        cout << "Nama: " << ktp.nama << "\n";
+        cout << "Tanggal Lahir: " << ktp.tanggalLahir << "\n";
+        cout << "Jenis Kelamin: " << ktp.jenisKelamin << "\n";
+        cout << "Alamat: " << ktp.alamat << "\n";
+        cout << "Agama: " << ktp.agama << "\n";
+        cout << "Status: " << ktp.status << "\n";
+        cout << "Pekerjaan: " << ktp.pekerjaan << "\n";
+        cout << "==========================\n\n";
     }
 };
 
@@ -63,7 +64,7 @@ int main() {
     system("cls");
 
     for (int i = 0; i < 3; i++) {
-        cout << "Data KTP ke-" << i + 1 << ":" << endl;
+        cout << "\tData KTP ke-" << i + 1 << ":" << endl;
         ktpManager.displayData(ktpArray[i]);
     }
 
