@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 class Node {
 public:
@@ -74,19 +75,19 @@ public:
     void printForward() {
         Node* current = head;
         while (current) {
-            std::cout << current->data << " ";
+           cout << current->data << " ";
             current = current->next;
         }
-        std::cout << std::endl;
+       cout <<endl;
     }
 
     void printBackward() {
         Node* current = tail;
         while (current) {
-            std::cout << current->data << " ";
+           cout << current->data << " ";
             current = current->prev;
         }
-        std::cout << std::endl;
+       cout <<endl;
     }
 };
 
@@ -107,9 +108,9 @@ int main() {
     myList.insertAfter(4, 1);
 
     // Cetak elemen maju dan mundur
-    std::cout << "Maju: ";
+   cout << "Maju: ";
     myList.printForward();
-    std::cout << "Mundur: ";
+   cout << "Mundur: ";
     myList.printBackward();
 
     return 0;
