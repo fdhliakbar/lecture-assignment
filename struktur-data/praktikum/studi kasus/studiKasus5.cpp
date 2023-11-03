@@ -76,7 +76,6 @@ public:
 
     void tampDafMobilDiPesan()
     {
-        cout << "Mobil yang dipesan : " << '\n';
         for (int i = 0; i < mobilDipesan.size(); i++)
         {
             cout << i + 1 << ". " << mobilDipesan[i].nama;
@@ -101,6 +100,8 @@ public:
             cout << "Pembayaran tunai sebesar " << totalAmount << " berhasil." << '\n';
             int kembalian = totalAmount - hitungBiayaTotal();
             cout << "Kembalian : " << kembalian << '\n';
+            system("pause");
+            system("cls");
             tampilkanStruk(); // Tampilkan struk setelah pembayaran tunai
         }
         else
@@ -123,6 +124,8 @@ public:
             atmTransactionsTail = newTransaction;
         }
         cout << "Transaksi ATM sebesar " << amount << " dengan bank " << bank << " berhasil." << '\n';
+        system("pause");
+        system("cls");
         tampilkanStruk(); // Tampilkan struk setelah pembayaran dengan ATM
     }
 
@@ -161,8 +164,8 @@ public:
         buatStruk(mobilDipesan.back().nama, hitungBiayaTotal());
 
         cout << "~~~ Struk Pembayaran ~~~" << "\n";
-        cout << "Mobil yang telah disewa: " << mobilDipesan.back().nama << "\n";
-        cout << "Total harga: " << hitungBiayaTotal() << "\n";
+        cout << "Mobil yang disewa: " << mobilDipesan.back().nama << "\n";
+        cout << "Total harga: " << hitungBiayaTotal() << "\n\n";
 
         Struk* currentStruk = strukHead;
         if (currentStruk)
@@ -184,7 +187,7 @@ public:
         if (file.is_open())
         {
             file << "~~~ Struk Pembayaran ~~~" << "\n";
-            file << "Mobil yang telah disewa: " << mobilDipesan.back().nama << "\n";
+            file << "Mobil yang disewa: " << mobilDipesan.back().nama << "\n";
             file << "Total harga: " << hitungBiayaTotal() << "\n";
 
             Struk* currentStruk = strukHead;
@@ -247,7 +250,7 @@ int main()
     case 1:
         cout << "Daftar mobil yang telah di pesan : " << '\n';
         rentalCar.tampDafMobilDiPesan();
-        cout << "Total harga : " << total << '\n';
+        cout << "Total harga : " << total << "\n\n";
         cout << "Masukkan total pembayaran tunai: ";
         cin >> totalAmount;
         rentalCar.tunai(totalAmount);
@@ -255,7 +258,7 @@ int main()
     case 2:
         cout << "Daftar mobil yang telah di pesan : " << '\n';
         rentalCar.tampDafMobilDiPesan();
-        cout << "Total harga : " << total << '\n';
+        cout << "Total harga : " << total << "\n\n";
         cout << "Pilih bank ATM (Contoh: BCA, Mandiri, BRI): ";
         cin >> bank;
         cout << "Masukkan total pembayaran dengan ATM: ";

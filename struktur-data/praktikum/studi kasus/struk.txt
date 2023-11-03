@@ -1,5 +1,5 @@
 ~~~ Struk Pembayaran ~~~
-Mobil yang telah disewa: Toyota Avanza
-Total harga: 100
+Mobil yang disewa: Mitsubishi Pajero
+Total harga: 180
 Transaksi Sebelumnya:
-Mobil: Toyota Avanza, Total Harga: 100
+Mobil: Mitsubishi Pajero, Total Harga: 180
