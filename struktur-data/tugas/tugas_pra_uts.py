@@ -117,3 +117,6 @@ printCircularLinkedList(circularLinkedList)
 # Nomor 6 (Delete Node After at Head)
 def delAtHead(linkedList, data):
     genap = 1
+
+
+print("Output deleted node: ")
