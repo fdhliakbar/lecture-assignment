@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="5481e3f4-e4a8-4a9c-a14c-b65dfbc838e7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/post4.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/prak5.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/prak52.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/prak7.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/struk.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/struk.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/studiKasus5.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/studikasus4.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/studikasus7.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/studikasus7.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/tempCodeRunnerFile.cpp" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Penulis.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Perpustakaan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/Main.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2YepjWEOld9KOjIe6sA3JFzSURX" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -34,6 +45,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "onboarding.tips.debug.path": "E:/github-learn/lecture-assignment/OOP/secondCodeTest/src/Main.java",
     "vue.rearranger.settings.migration": "true"
   }
@@ -47,21 +63,11 @@
       <option name="presentableId" value="Default" />
       <updated>1700896040731</updated>
       <workItem from="1700896041821" duration="26000" />
+      <workItem from="1700897967428" duration="1723000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
