@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5481e3f4-e4a8-4a9c-a14c-b65dfbc838e7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/post4.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/prak5.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/prak52.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/prak7.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/struk.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/struk.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/studiKasus5.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/studikasus4.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/studikasus7.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/studikasus7.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../struktur-data/praktikum/studi kasus/tempCodeRunnerFile.cpp" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2YepjWEOld9KOjIe6sA3JFzSURX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "onboarding.tips.debug.path": "E:/github-learn/lecture-assignment/OOP/secondCodeTest/src/Main.java",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5481e3f4-e4a8-4a9c-a14c-b65dfbc838e7" name="Changes" comment="" />
+      <created>1700896040731</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700896040731</updated>
+      <workItem from="1700896041821" duration="26000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
