@@ -1,8 +1,6 @@
-#include <iostream>
+#include <bits/stdc++.h>
 #include <fstream>
-#include <vector>
-#include <stack>
-#include <string>
+#include <queue>
 using namespace std;
 
 struct Mobil
@@ -65,7 +63,7 @@ public:
             while (!transaksiStack.empty())
             {
                 ATMTransaction transaksi = transaksiStack.top();
-                cout << transaksi.bank << " - " << transaksi.amount << "\n\n";
+                cout << transaksi.bank << " - " << transaksi.amount << "\n";
                 transaksiStack.pop();
             }
         }
@@ -291,7 +289,7 @@ int main()
             cin >> totalAmount;
             rentalCar.tunai(totalAmount);
             break;
-       case 2:
+        case 2:
             cout << "Daftar mobil yang telah di pesan : " << '\n';
             rentalCar.tampDafMobilDiPesan();
             cout << "Total harga : " << total << "\n\n";
@@ -300,14 +298,7 @@ int main()
             cout << "Masukkan total pembayaran dengan ATM: ";
             cin >> totalAmount;
             rentalCar.bayarDenganATM(bank, totalAmount);
-
-            cout << "Apakah Anda ingin melihat daftar transaksi ATM? (1. Ya / 2. Tidak): ";
-            int viewTransaksi;
-            cin >> viewTransaksi;
-
-            if (viewTransaksi == 1) {
-                rentalCar.tampilkanDaftarTransaksiATM();
-            }
+            rentalCar.tampilkanDaftarTransaksiATM();
             break;
         case 3:
             cout << "Daftar Transaksi Stack: " << "\n";
