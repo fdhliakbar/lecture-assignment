@@ -3,13 +3,14 @@
 #include <queue>
 using namespace std;
 
-struct Mobil
-{
+struct Mobil{
     string nama;
     double hargaPerhari;
     double totalHarga;
     int jumlahHari;
 };
+
+
 
 struct ATMTransaction
 {
@@ -63,7 +64,7 @@ public:
             while (!transaksiStack.empty())
             {
                 ATMTransaction transaksi = transaksiStack.top();
-                cout << transaksi.bank << " - " << transaksi.amount << "\n";
+                cout << transaksi.bank << " - " << transaksi.amount << "\n\n";
                 transaksiStack.pop();
             }
         }
@@ -207,11 +208,10 @@ void tampilkanStruk()
         } while (currentStruk != strukHead);
     }
     
-    simpanStrukKeFile("struk.txt"); // Simpan struk ke dalam berkas "struk.txt"
+    simpanStrukKeFile("struk.txt");
 }
 
-void simpanStrukKeFile(const string& filename)
-{
+void simpanStrukKeFile(const string& filename){
     ofstream file(filename);
     if (file.is_open())
     {
@@ -247,8 +247,7 @@ private:
     Struk* strukTail;
 };
 
-int main()
-{
+int main(){
     PenyewaanMobil rentalCar;
     int pilihan;
     int totalAmount;
@@ -258,7 +257,7 @@ int main()
     {
         rentalCar.tampilkanDaftarMobil();
 
-        cout << '\n' << "Pilih mobil yang ingin disewa (masukkan nomor): ";
+        cout << "\nPilih mobil yang ingin disewa (masukkan nomor): ";
         cin >> pilihan;
 
         rentalCar.pesanMobil(pilihan - 1);
@@ -289,7 +288,7 @@ int main()
             cin >> totalAmount;
             rentalCar.tunai(totalAmount);
             break;
-        case 2:
+       case 2:
             cout << "Daftar mobil yang telah di pesan : " << '\n';
             rentalCar.tampDafMobilDiPesan();
             cout << "Total harga : " << total << "\n\n";
@@ -298,7 +297,14 @@ int main()
             cout << "Masukkan total pembayaran dengan ATM: ";
             cin >> totalAmount;
             rentalCar.bayarDenganATM(bank, totalAmount);
-            rentalCar.tampilkanDaftarTransaksiATM();
+
+            cout << "Apakah Anda ingin melihat daftar transaksi ATM? (1. Ya / 2. Tidak): ";
+            int viewTransaksi;
+            cin >> viewTransaksi;
+
+            if (viewTransaksi == 1) {
+                rentalCar.tampilkanDaftarTransaksiATM();
+            }
             break;
         case 3:
             cout << "Daftar Transaksi Stack: " << "\n";
