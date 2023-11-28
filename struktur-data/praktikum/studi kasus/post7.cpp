@@ -1,42 +1,168 @@
 #include <iostream>
-#include <queue>
+#include <string>
+using namespace std;
 
-// Struktur untuk menyimpan informasi transaksi
-struct Transaction {
-    std::string customerName;
-    double amount;
-    bool success; // Status keberhasilan pembayaran
+struct KTPData
+{
+    string nama;
+    string tanggalLahir;
+    string nik;
+    string jenisKelamin;
+    string agama;
+    string status;
+    string pekerjaan;
 };
 
-// Fungsi untuk memproses transaksi pembayaran
-void processPayment(Transaction& transaction) {
-    // Logika pemrosesan pembayaran (contoh: selalu berhasil)
-    transaction.success = true;
-}
+class node
+{
+public:
+    KTPData data;
+    node *next;
+    node *prev;
 
-int main() {
-    std::queue<Transaction> paymentQueue;
+    node(const KTPData &ktp) : data(ktp), next(nullptr), prev(nullptr) {}
+};
 
-    // Menambahkan beberapa transaksi ke antrian
-    paymentQueue.push({"Customer1", 100.0, false});
-    paymentQueue.push({"Customer2", 150.0, false});
-    paymentQueue.push({"Customer3", 200.0, false});
+class KTPManager
+{
+public:
+    node *head;
+    node *tail;
 
-    // Memproses transaksi dalam antrian
-    while (!paymentQueue.empty()) {
-        Transaction currentTransaction = paymentQueue.front();
-        paymentQueue.pop();
+    KTPManager() : head(nullptr), tail(nullptr) {}
 
-        // Memproses pembayaran
-        processPayment(currentTransaction);
+    void inputData(KTPData &ktp)
+    {
+        cout << "Masukkan Nama: ";
+        cin.ignore();
+        getline(cin, ktp.nama);
 
-        // Menangani kesalahan atau kegagalan pembayaran
-        if (!currentTransaction.success) {
-            std::cout << "Error processing payment for customer: " << currentTransaction.customerName << std::endl;
-            // Logika untuk menangani ulang atau memberikan pesan kesalahan
-        } else {
-            std::cout << "Payment successful for customer: " << currentTransaction.customerName << std::endl;
+        cout << "Masukkan Tanggal Lahir: ";
+        getline(cin, ktp.tanggalLahir);
+
+        cout << "Masukkan NIK: ";
+        getline(cin, ktp.nik);
+
+        cout << "Masukkan Jenis Kelamin: ";
+        getline(cin, ktp.jenisKelamin);
+
+        cout << "Masukkan Agama: ";
+        getline(cin, ktp.agama);
+
+        cout << "Masukkan Status: ";
+        getline(cin, ktp.status);
+
+        cout << "Masukkan Pekerjaan: ";
+        getline(cin, ktp.pekerjaan);
+    }
+
+    void displayData(const KTPData &ktp)
+    {
+        cout << "Nama: " << ktp.nama << endl;
+        cout << "Tanggal Lahir: " << ktp.tanggalLahir << endl;
+        cout << "NIK: " << ktp.nik << endl;
+        cout << "Jenis Kelamin: " << ktp.jenisKelamin << endl;
+        cout << "Agama: " << ktp.agama << endl;
+        cout << "Status: " << ktp.status << endl;
+        cout << "Pekerjaan: " << ktp.pekerjaan << endl;
+    }
+
+    void tambahDataBelakang(const KTPData &ktp)
+    {
+        node *newNode = new node(ktp);
+        if (head == nullptr)
+        {
+            head = newNode;
+            tail = newNode;
         }
+        else
+        {
+            newNode->prev = tail;
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
+
+    void hapusDataBelakang()
+    {
+        if (head == nullptr)
+        {
+            cout << "Linked List kosong. Tidak ada yang bisa dihapus." << endl;
+            return;
+        }
+        if (head == tail)
+        {
+            delete head;
+            head = nullptr;
+            tail = nullptr;
+        }
+        else
+        {
+            node *temp = tail;
+            tail = tail->prev;
+            delete temp;
+            if (tail != nullptr)
+                tail->next = nullptr;
+        }
+    }
+
+    ~KTPManager()
+    {
+        while (head != nullptr)
+        {
+            node *temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+};
+
+int main()
+{
+    KTPManager ktpManager;
+
+    int maxData = 0;
+
+    cout << "Masukkan jumlah maksimal data KTP yang ingin Anda tampung: ";
+    cin >> maxData;
+
+    for (int i = 0; i < maxData; i++)
+    {
+        KTPData ktp;
+        cout << "\n\n";
+        cout << "Data KTP ke-" << i + 1 << ":" << endl;
+        ktpManager.inputData(ktp);
+        ktpManager.tambahDataBelakang(ktp);
+    }
+
+    cout << endl
+         << endl;
+
+    cout << "Data sebelum menghapus node terakhir:\n\n";
+
+    node *current = ktpManager.head;
+    int i = 0;
+    while (current != nullptr)
+    {
+        cout << "\tData KTP ke- " << i + 1 << ":" << endl;
+        ktpManager.displayData(current->data);
+        current = current->next;
+        i++;
+    }
+
+    ktpManager.hapusDataBelakang();
+
+    cout << "\n\n";
+    cout << "Data setelah menghapus node terakhir:\n\n";
+
+    current = ktpManager.head;
+    i = 0;
+    while (current != nullptr)
+    {
+        cout << "\tData KTP ke- " << i + 1 << ":" << endl;
+        ktpManager.displayData(current->data);
+        current = current->next;
+        i++;
     }
 
     return 0;
