@@ -164,6 +164,5 @@ int main()
         current = current->next;
         i++;
     }
-
     return 0;
 }
