@@ -46,13 +46,54 @@ public:
         strukTail = nullptr;
     }
 
-    void hitungDenda() {
+    // PERTEMUAN 7 & 8(Doubly LL)
+    void totalDenda(double batasWaktu)
+    {
+        // Check for overdue transactions and calculate total denda
+        double totalDenda = 0.0;
 
+        while (!overdueTransactions.empty())
+        {
+            DendaTransaction* transaction = overdueTransactions.front();
+
+            // Check if the transaction is overdue
+            if (transaction->denda > batasWaktu)
+            {
+                totalDenda += transaction->denda;
+            }
+
+            // Remove processed transaction from the queue
+            overdueTransactions.pop();
+
+            // Free memory allocated for the transaction
+            delete transaction;
+        }
+
+        if (totalDenda > 0.0)
+        {
+            cout << "Total Denda: " << totalDenda << "\n";
+        }
+        else
+        {
+            cout << "Tidak ada denda yang perlu dibayarkan.\n";
+        }
     }
 
-    void tampilkanDaftarDendaSewaMobil() {
-        
+    void tambahDenda(const string& mobil, double denda)
+    {
+        DendaTransaction* newTransaction = new DendaTransaction(mobil, denda);
+
+        if (overdueTransactions.size() >= MAX_QUEUE_SIZE)
+        {
+            // Remove the oldest transaction if the queue is full
+            DendaTransaction* removedTransaction = overdueTransactions.front();
+            overdueTransactions.pop();
+            delete removedTransaction;
+        }
+
+        overdueTransactions.push(newTransaction);
     }
+
 
     void tampilkanDaftarTransaksiStack()
     {
@@ -249,6 +290,16 @@ void simpanStrukKeFile(const string& filename)
 }
 
 private:
+    struct DendaTransaction {
+        string mobil;
+        double denda;
+        DendaTransaction* next;
+
+        DendaTransaction(const string& m, double d) : mobil(m), denda(d), next(nullptr) {}
+    };
+
+    static const int MAX_QUEUE_SIZE = 10;
+    queue<DendaTransaction*> overdueTransactions; 
     vector<Mobil> daftarMobil;
     vector<Mobil> mobilDipesan;
     ATMTransaction* atmTransactionsHead;
@@ -261,7 +312,7 @@ int main()
 {
     PenyewaanMobil rentalCar;
     short int pilihan;
-    double totalAmount;
+    double totalAmount, batasWaktu;
     bool selesai = false;
 
     do {
@@ -340,7 +391,13 @@ int main()
             rentalCar.tampilkanDaftarTransaksiStack();
         }
         else if (pilihan == 4) {
-            cout << "~~~ Riwayat Denda Mobil ~~~" << '\n';
+            cout << "\n~~~ Riwayat Denda Mobil ~~~" << '\n';
+            cout << "Masukkan batas waktu denda (contoh: 3 jam): ";
+            cin >> batasWaktu;
+            rentalCar.totalDenda(batasWaktu);
+
+            system("pause");
+            system("cls");
         }
         else if (pilihan == 5) {
             selesai = true; // iterasi berakhir
