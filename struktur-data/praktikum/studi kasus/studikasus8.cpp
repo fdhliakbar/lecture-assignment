@@ -1,8 +1,6 @@
-#include <iostream>
+#include <bits/stdc++.h>
 #include <fstream>
-#include <vector>
-#include <stack>
-#include <string>
+#include <queue>
 using namespace std;
 
 struct Mobil
@@ -31,17 +29,6 @@ struct Struk
     Struk(const string& mobil, double harga) : mobilDipesan(mobil), totalHarga(harga), next(nullptr) {}
 };
 
-struct PriorityQueueElement
-{
-    string mobil;
-    double totalHarga;
-    int priority;
-    PriorityQueueElement* next;
-    PriorityQueueElement* prev;
-
-    PriorityQueueElement(const string& m, double harga, int pri) : mobil(m), totalHarga(harga), priority(pri), next(nullptr), prev(nullptr) {}
-};
-
 class PenyewaanMobil
 {
 public:
@@ -57,8 +44,14 @@ public:
         atmTransactionsTail = nullptr;
         strukHead = nullptr;
         strukTail = nullptr;
-        priorityQueueHead = nullptr;
-        priorityQueueTail = nullptr;
+    }
+
+    void hitungDenda() {
+
+    }
+
+    void tampilkanDaftarDendaSewaMobil() {
+        
     }
 
     void tampilkanDaftarTransaksiStack()
@@ -85,6 +78,8 @@ public:
         else
         {
             cout << "Tidak ada transaksi ATM." << "\n";
+            system("pause");
+            system("");
         }
     }
 
@@ -102,6 +97,8 @@ public:
 
     void pesanMobil(int indeksMobil)
     {
+        //system("cls");
+
         if (indeksMobil >= 0 && indeksMobil < daftarMobil.size())
         {
             mobilDipesan.push_back(daftarMobil[indeksMobil]);
@@ -139,7 +136,9 @@ public:
             cout << "Pembayaran tunai sebesar " << totalAmount << " berhasil." << '\n';
             int kembalian = totalAmount - hitungBiayaTotal();
             cout << "Kembalian : " << kembalian << '\n';
-            tampilkanStruk();
+            system("pause");
+            system("cls");
+            tampilkanStruk(); // Tampilkan struk setelah pembayaran tunai
         }
         else
         {
@@ -149,6 +148,7 @@ public:
 
     void bayarDenganATM(const string& bank, double amount)
     {
+        // Tambahkan informasi transaksi ke dalam stack
         ATMTransaction* newTransaction = new ATMTransaction(bank, amount);
         if (atmTransactionsHead == nullptr)
         {
@@ -162,132 +162,91 @@ public:
         }
 
         cout << "Transaksi ATM sebesar " << amount << " dengan bank " << bank << " berhasil." << '\n';
+        //system("pause");
+        //system("cls");
         tampilkanStruk();
-    }
+     }
 
-    void tambahAntrianBerprioritas(const string& mobil, double totalHarga, int priority)
+    
+ void tampilkanDaftarTransaksiATM()
+{
+    cout << "Daftar Transaksi ATM:" << '\n';
+    ATMTransaction* currentTransaction = atmTransactionsHead;
+    int index = 1;
+    while (currentTransaction != nullptr)
     {
-        PriorityQueueElement* newElement = new PriorityQueueElement(mobil, totalHarga, priority);
-
-        if (priorityQueueHead == nullptr)
-        {
-            priorityQueueHead = newElement;
-            priorityQueueTail = newElement;
-        }
-        else
-        {
-            PriorityQueueElement* currentElement = priorityQueueHead;
-
-            while (currentElement != nullptr && priority > currentElement->priority)
-            {
-                currentElement = currentElement->next;
-            }
-
-            if (currentElement == nullptr)
-            {
-                newElement->prev = priorityQueueTail;
-                priorityQueueTail->next = newElement;
-                priorityQueueTail = newElement;
-            }
-            else
-            {
-                newElement->next = currentElement;
-                newElement->prev = currentElement->prev;
-
-                if (currentElement->prev != nullptr)
-                {
-                    currentElement->prev->next = newElement;
-                }
-                else
-                {
-                    priorityQueueHead = newElement;
-                }
-
-                currentElement->prev = newElement;
-            }
-        }
+        cout << index << ". Bank: " << currentTransaction->bank << ", Jumlah: " << currentTransaction->amount << '\n';
+        currentTransaction = currentTransaction->next;
+        index++;
     }
+}
 
-    void tampilkanAntrianBerprioritas()
+void buatStruk(const string& mobil, double totalHarga)
+{
+    Struk* newStruk = new Struk(mobil, totalHarga);
+    if (strukHead == nullptr)
     {
-        cout << "Antrian Berprioritas:" << '\n';
-        PriorityQueueElement* currentElement = priorityQueueHead;
-        int index = 1;
-
-        while (currentElement != nullptr)
-        {
-            cout << index << ". Mobil: " << currentElement->mobil << ", Total Harga: " << currentElement->totalHarga << ", Prioritas: " << currentElement->priority << '\n';
-            currentElement = currentElement->next;
-            index++;
-        }
+        strukHead = newStruk;
+        strukTail = newStruk;
+        newStruk->next = newStruk;  // Membuat linked list menjadi circular
     }
-
-    void buatStruk(const string& mobil, double totalHarga)
+    else
     {
-        Struk* newStruk = new Struk(mobil, totalHarga);
-        if (strukHead == nullptr)
-        {
-            strukHead = newStruk;
-            strukTail = newStruk;
-            newStruk->next = newStruk;
-        }
-        else
-        {
-            newStruk->next = strukHead;
-            strukTail->next = newStruk;
-            strukTail = newStruk;
-        }
+        newStruk->next = strukHead;
+        strukTail->next = newStruk;
+        strukTail = newStruk;
     }
+}
 
-    void tampilkanStruk()
+void tampilkanStruk()
+{
+    buatStruk(mobilDipesan.back().nama, hitungBiayaTotal());
+
+    cout << "~~~ Struk Pembayaran ~~~" << "\n";
+    cout << "Mobil yang disewa: " << mobilDipesan.back().nama << "\n";
+    cout << "Total harga: " << hitungBiayaTotal() << "\n\n";
+
+    Struk* currentStruk = strukHead;
+    if (currentStruk)
     {
-        buatStruk(mobilDipesan.back().nama, hitungBiayaTotal());
+        cout << "Transaksi Sebelumnya:" << "\n";
+        do
+        {
+            cout << "Mobil: " << currentStruk->mobilDipesan << ", Total Harga: " << currentStruk->totalHarga << "\n";
+            currentStruk = currentStruk->next;
+        } while (currentStruk != strukHead);
+    }
+    
+    simpanStrukKeFile("struk.txt"); // Simpan struk ke dalam berkas "struk.txt"
+}
 
-        cout << "~~~ Struk Pembayaran ~~~" << "\n";
-        cout << "Mobil yang disewa: " << mobilDipesan.back().nama << "\n";
-        cout << "Total harga: " << hitungBiayaTotal() << "\n\n";
+void simpanStrukKeFile(const string& filename)
+{
+    ofstream file(filename);
+    if (file.is_open())
+    {
+        file << "~~~ Struk Pembayaran ~~~" << "\n";
+        file << "Mobil yang disewa: " << mobilDipesan.back().nama << "\n";
+        file << "Total harga: " << hitungBiayaTotal() << "\n";
 
         Struk* currentStruk = strukHead;
         if (currentStruk)
         {
-            cout << "Transaksi Sebelumnya:" << "\n";
+            file << "Transaksi Sebelumnya:" << "\n";
             do
             {
-                cout << "Mobil: " << currentStruk->mobilDipesan << ", Total Harga: " << currentStruk->totalHarga << "\n";
+                file << "Mobil: " << currentStruk->mobilDipesan << ", Total Harga: " << currentStruk->totalHarga << "\n";
                 currentStruk = currentStruk->next;
             } while (currentStruk != strukHead);
         }
-
-        simpanStrukKeFile("struk.txt");
+        file.close();
+        cout << "Struk telah disimpan ke dalam file " << filename << "\n";
     }
-
-    void simpanStrukKeFile(const string& filename)
+    else
     {
-        ofstream file(filename);
-        if (file.is_open())
-        {
-            file << "~~~ Struk Pembayaran ~~~" << "\n";
-            file << "Mobil yang disewa: " << mobilDipesan.back().nama << "\n";
-            file << "Total harga: " << hitungBiayaTotal() << "\n";
-
-            Struk* currentStruk = strukHead;
-            if (currentStruk)
-            {
-                file << "Transaksi Sebelumnya:" << "\n";
-                do
-                {
-                    file << "Mobil: " << currentStruk->mobilDipesan << ", Total Harga: " << currentStruk->totalHarga << "\n";
-                    currentStruk = currentStruk->next;
-                } while (currentStruk != strukHead);
-            }
-            file.close();
-            cout << "Struk telah disimpan ke dalam file " << filename << "\n";
-        }
-        else
-        {
-            cout << "Gagal membuka berkas " << filename << " untuk penyimpanan struk." << "\n";
-        }
+        cout << "Gagal membuka berkas " << filename << " untuk penyimpanan struk." << "\n";
     }
+}
 
 private:
     vector<Mobil> daftarMobil;
@@ -296,86 +255,102 @@ private:
     ATMTransaction* atmTransactionsTail;
     Struk* strukHead;
     Struk* strukTail;
-    PriorityQueueElement* priorityQueueHead;
-    PriorityQueueElement* priorityQueueTail;
 };
 
 int main()
 {
     PenyewaanMobil rentalCar;
-    int pilihan;
-    int totalAmount;
+    short int pilihan;
+    double totalAmount;
     bool selesai = false;
 
-    while (!selesai)
-    {
-        rentalCar.tampilkanDaftarMobil();
-
-        cout << '\n' << "Pilih mobil yang ingin disewa (masukkan nomor): ";
+    do {
+        // MENU PROGRAM
+        cout << "~~ Program Pembayaran ~~~" << '\n';
+        cout << "1. Tampilkan Daftar Mobil" << '\n';
+        cout << "1. Pesan Sewa Mobil" << '\n';
+        cout << "3. Riwayat Transaksi" << '\n';
+        cout << "4. Riwayat Denda" << '\n';
+        cout << "5. Keluar(Exit)" << '\n';
+        cout << "Masukkan Pilihan Anda : ";
         cin >> pilihan;
 
-        rentalCar.pesanMobil(pilihan - 1);
-        int total = rentalCar.hitungBiayaTotal();
-        cout << "Pembayaran yang harus Anda lakukan: " << total << "\n\n";
+        if (pilihan == 1) {
+            rentalCar.tampilkanDaftarMobil();
 
-        cout << "~~~ Metode pembayaran ~~~" << "\n";
-        cout << "1. Pembayaran Tunai" << "\n";
-        cout << "2. Pembayaran dengan ATM" << "\n";
-        cout << "3. Tampilkan Daftar Transaksi Stack" << "\n";
-        cout << "4. Tampilkan Antrian Berprioritas" << "\n";
-        cout << "5. Keluar" << "\n\n";
-        cout << "Pilihan metode pembayaran (1/2/3/4/5): ";
+            cout << endl;
 
-        int choose;
-        cin >> choose;
-
-        string bank;
-
-        cout << '\n';
-
-        switch (choose)
-        {
-        case 1:
-            cout << "Daftar mobil yang telah di pesan : " << '\n';
-            rentalCar.tampDafMobilDiPesan();
-            cout << "Total harga : " << total << "\n\n";
-            cout << "Masukkan total pembayaran tunai: ";
-            cin >> totalAmount;
-            rentalCar.tunai(totalAmount);
-            break;
-        case 2:
-            cout << "Daftar mobil yang telah di pesan : " << '\n';
-            rentalCar.tampDafMobilDiPesan();
-            cout << "Total harga : " << total << "\n\n";
-            cout << "Pilih bank ATM (Contoh: BCA, Mandiri, BRI): ";
-            cin >> bank;
-            cout << "Masukkan total pembayaran dengan ATM: ";
-            cin >> totalAmount;
-            rentalCar.bayarDenganATM(bank, totalAmount);
-
-            cout << "Apakah Anda ingin melihat daftar transaksi ATM? (1. Ya / 2. Tidak): ";
-            int viewTransaksi;
-            cin >> viewTransaksi;
-
-            if (viewTransaksi == 1) {
-                rentalCar.tampilkanDaftarTransaksiATM();
-            }
-            break;
-        case 3:
-            cout << "Daftar Transaksi Stack: " << "\n";
-            rentalCar.tampilkanDaftarTransaksiStack();
-            break;
-        case 4:
-            cout << "Antrian Berprioritas: " << "\n";
-            rentalCar.tampilkanAntrianBerprioritas();
-            break;
-        case 5:
-            selesai = true;
-            break;
-        default:
-            cout << "Pilihan tidak valid." << '\n';
         }
-    }
+        else if (pilihan == 2) {
+            rentalCar.tampilkanDaftarMobil();
+            string bank;
+
+            cout << "\nPilih mobil yang ingin di sewa(masukkan nomor): ";
+            cin >> pilihan;
+
+            rentalCar.pesanMobil(pilihan - 1);
+            double total = rentalCar.hitungBiayaTotal();
+
+            cout << "Pembayaran yang harus anda lakukan: " << total << "\n\n";
+
+            cout << "~~~ Metode pembayaran ~~~" << "\n";
+            cout << "1. Pembayaran Tunai" << "\n";
+            cout << "2. Pembayaran dengan ATM" << "\n";
+            cout << "Pilihan metode pembayaran(1/2): ";
+
+            short int userInput;
+            cin >> userInput;
+
+            if (userInput == 1) {
+                cout << "Daftar mobil yang telah di pesan : " << '\n';
+                rentalCar.tampDafMobilDiPesan();
+                cout << "Total harga : " << total << "\n\n";
+                cout << "Masukkan total pembayaran tunai: ";
+                cin >> totalAmount;
+
+                rentalCar.tunai(totalAmount);
+
+                system("pause");
+                system("cls");
+            }
+            if (userInput == 2) {
+                cout << "Daftar mobil yang telah di pesan : " << '\n';
+                rentalCar.tampDafMobilDiPesan();
+
+                cout << "Total harga : " << total << "\n\n";
+                cout << "Pilih bank ATM (Contoh: BCA, Mandiri, BRI): ";
+                cin >> bank;
+                
+                cout << "Masukkan total pembayaran dengan ATM: ";
+                cin >> totalAmount;
+                rentalCar.bayarDenganATM(bank, totalAmount);
+
+                cout << "Apakah Anda ingin melihat daftar transaksi ATM? (1. Ya / 2. Tidak): ";
+                int viewTransaksi;
+                cin >> viewTransaksi;
+
+                if (viewTransaksi == 1) {
+                    rentalCar.tampilkanDaftarTransaksiATM();
+                }
+            }
+
+        }
+        else if (pilihan == 3) {
+            cout << "Riwayat Transaksi User" << '\n';
+            rentalCar.tampilkanDaftarTransaksiStack();
+        }
+        else if (pilihan == 4) {
+            cout << "~~~ Riwayat Denda Mobil ~~~" << '\n';
+        }
+        else if (pilihan == 5) {
+            selesai = true; // iterasi berakhir
+        } else {
+            cout << "Inputan yang anda masukkan salah!!!." << '\n';
+            system("pause");
+            system("cls");
+        }
+    } while (!selesai);
 
     return 0;
+
 }
