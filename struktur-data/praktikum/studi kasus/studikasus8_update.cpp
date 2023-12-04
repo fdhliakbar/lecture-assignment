@@ -20,6 +20,7 @@ struct ATMTransaction
     ATMTransaction(const string& b, double amt) : bank(b), amount(amt), next(nullptr) {}
 };
 
+
 struct Struk
 {
     string mobilDipesan;
@@ -131,8 +132,7 @@ public:
         }
     }
 
-    double hitungBiayaTotal()
-    {
+    double hitungBiayaTotal(){
         double totalBiaya = 0.0;
         for (const auto& mobil : mobilDipesan)
         {
