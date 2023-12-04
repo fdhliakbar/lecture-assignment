@@ -30,6 +30,14 @@ struct Struk
     Struk(const string& mobil, double harga) : mobilDipesan(mobil), totalHarga(harga), next(nullptr) {}
 };
 
+struct Pesanan {
+    string namaMobil;
+    Pesanan* prev;
+    Pesanan* next;
+
+    Pesanan(const string& mobil) : namaMobil(mobil), prev(nullptr), next(nullptr) {}
+};
+
 int hargaBelumSelesai;
 
 class PenyewaanMobil
@@ -59,6 +67,31 @@ public:
     }
 
     // PERTEMUAN 8 DOUBLY LINK LIST
+    Pesanan* pesananHead;
+    Pesanan* pesananTail;
+
+    void tambahPesanan(const string& mobil){
+        Pesanan* newPesanan = new Pesanan(mobil);
+        if (pesananHead == nullptr){
+            pesananHead = newPesanan;
+            pesananTail = newPesanan;
+        }else{
+            pesananTail->next = newPesanan;
+            newPesanan->prev = pesananTail;
+            pesananTail = newPesanan;
+        }
+    }
+
+    void tampilkanDaftarMobilDipesan(){
+        cout << "Daftar Mobil yang Telah Dipesan:" << '\n';
+        Pesanan* currentPesanan = pesananHead;
+        while (currentPesanan != nullptr)
+        {
+            cout << currentPesanan->namaMobil << '\n';
+            currentPesanan = currentPesanan->next;
+        }
+    }
+
 
 
 
@@ -68,8 +101,7 @@ public:
     // PERTEMUAN 10 SEKUEN
 
 
-    void tampilkanDaftarTransaksiStack()
-    {
+    void tampilkanDaftarTransaksiStack(){
         stack<ATMTransaction> transaksiStack;
 
         ATMTransaction* currentTransaction = atmTransactionsHead;
@@ -117,6 +149,7 @@ public:
         {
             mobilDipesan.push_back(daftarMobil[indeksMobil]);
             cout << "Anda telah memesan mobil " << daftarMobil[indeksMobil].nama << "." << '\n';
+
         }
         else
         {
@@ -304,7 +337,6 @@ int main()
     short int pilihan;
     double totalAmount, batasWaktu;
     bool selesai = false;
-    
 
     do {
         // MENU PROGRAM
@@ -331,6 +363,7 @@ int main()
             cin >> pilihan;
 
             rentalCar.pesanMobil(pilihan - 1);
+
             double total = rentalCar.hitungBiayaTotal();
 
             cout << "Pembayaran yang harus anda lakukan: " << total << "\n\n";
@@ -382,6 +415,7 @@ int main()
         else if (pilihan == 3) {
             cout << "\nRiwayat Transaksi User" << '\n';
             rentalCar.tampilkanDaftarTransaksiStack();
+            rentalCar.tampilkanDaftarMobilDipesan();
         }
         else if (pilihan == 4) {
             cout << "\n~~~ Riwayat Denda Mobil ~~~" << '\n';
