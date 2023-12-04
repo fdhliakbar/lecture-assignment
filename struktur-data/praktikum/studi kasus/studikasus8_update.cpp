@@ -29,6 +29,8 @@ struct Struk
     Struk(const string& mobil, double harga) : mobilDipesan(mobil), totalHarga(harga), next(nullptr) {}
 };
 
+int hargaBelumSelesai;
+
 class PenyewaanMobil
 {
 public:
@@ -47,48 +49,11 @@ public:
     }
 
     // PERTEMUAN 7 QUEUE WITH ARRAY CIRCULAR
-    void totalDenda(double batasWaktu)
-    {
-        // Check for overdue transactions and calculate total denda
-        double totalDenda = 0.0;
 
-        while (!overdueTransactions.empty())
-        {
-            DendaTransaction* transaction = overdueTransactions.front();
-
-            // Check if the transaction is overdue
-            if (transaction->denda > batasWaktu)
-            {
-                totalDenda += transaction->denda;
-            }
-
-            overdueTransactions.pop();
-
-            // Free memory allocated for the transaction
-            delete transaction;
-        }
-
-        if (totalDenda > 0.0)
-        {
-            cout << "Total Denda: " << totalDenda << "\n";
-        }
-        else
-        {
-            cout << "Tidak ada denda yang perlu dibayarkan.\n";
-        }
-    }
 
     void tambahDenda(const string& mobil, double denda)
     {
         DendaTransaction* newTransaction = new DendaTransaction(mobil, denda);
-
-        if (overdueTransactions.size() >= MAX_QUEUE_SIZE)
-        {
-            DendaTransaction* removedTransaction = overdueTransactions.front();
-            overdueTransactions.pop();
-            delete removedTransaction;
-        }
-
         overdueTransactions.push(newTransaction);
     }
 
@@ -190,7 +155,9 @@ public:
             tampilkanStruk(); // Tampilkan struk setelah pembayaran tunai
         }
         else {
-            cout << "Total pembayaran anda kurang.\n\n";
+            string jenisMobil;
+            hargaBelumSelesai = hitungBiayaTotal() - totalAmount;
+            cout << "Total pembayaran anda kurang: " << hargaBelumSelesai << "\n\n";
 
             // Cicil Mobil
             int cicilSewaMobil;
@@ -199,11 +166,11 @@ public:
 
             if (cicilSewaMobil == 1) {
                 int periodeCicilan;
-                cout << "Masukkan jangka waktu cicilan(hari): ";
-                cin >> periodeCicilan;
-                double totalCicilan = hitungBiayaTotal() / periodeCicilan;
+                cout << "Tambah Cicilan berhasil dimasukkan" << "\n";
 
-                cout << "Anda akan mencicil sebesar " << totalCicilan << " per hari selama " << periodeCicilan << " hari." << '\n';
+                tambahDenda(jenisMobil, periodeCicilan);
+
+
             }
             system("pause");
             system("cls");
@@ -322,8 +289,7 @@ private:
         DendaTransaction(const string& m, double d) : mobil(m), denda(d), next(nullptr) {}
     };
 
-    static const int MAX_QUEUE_SIZE = 10;
-    queue<DendaTransaction*> overdueTransactions; 
+    queue<DendaTransaction*> overdueTransactions;
     vector<Mobil> daftarMobil;
     vector<Mobil> mobilDipesan;
     ATMTransaction* atmTransactionsHead;
@@ -338,6 +304,7 @@ int main()
     short int pilihan;
     double totalAmount, batasWaktu;
     bool selesai = false;
+    
 
     do {
         // MENU PROGRAM
@@ -418,9 +385,7 @@ int main()
         }
         else if (pilihan == 4) {
             cout << "\n~~~ Riwayat Denda Mobil ~~~" << '\n';
-            cout << "Masukkan batas waktu denda (contoh: 3 jam): ";
-            cin >> batasWaktu;
-            rentalCar.totalDenda(batasWaktu);
+            cout << "Denda : " << hargaBelumSelesai << '\n';
 
             system("pause");
             system("cls");

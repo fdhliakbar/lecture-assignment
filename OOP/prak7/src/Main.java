@@ -1,33 +1,17 @@
-import java.util.Scanner;
-
+// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
+// then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        // Press Alt+Enter with your caret at the highlighted text to see how
+        // IntelliJ IDEA suggests fixing it.
+        System.out.printf("Hello and welcome!");
 
-        System.out.println("~~~ Data Pegawai Tetap ~~~");
-        System.out.print("Masukkan Nama : ");
-        String namaPegawaiTetap = input.next();
-        System.out.print("Masukkan Jabatan : ");
-        String jabatanPegawaiTetap = input.next();
-        System.out.print("Masukkan Gaji Pokok : ");
-        double gajiPokok = input.nextDouble();
+        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
+        for (int i = 1; i <= 5; i++) {
 
-        System.out.print("\n~~~ Data Pegawai Kontrak ~~~\n");
-        System.out.print("Masukkan nama : ");
-        String namaPegawaiKontrak = input.next();
-        System.out.print("Masukkan Jabatan : ");
-        String jabatanPegawaiKontrak = input.next();
-        System.out.print("Masukkan Jumlah Jam Kerja : ");
-        double jamKerja = input.nextDouble();
-        System.out.print("Masukkan Gaji Kontrak : ");
-        double gajiKontrak = input.nextDouble();
-
-        System.out.println(" ");
-
-        PegawaiTetap pegawaiTetap = new PegawaiTetap(namaPegawaiTetap, jabatanPegawaiTetap, gajiPokok);
-        PegawaiKontrak pegawaiKontrak = new PegawaiKontrak(namaPegawaiKontrak, jabatanPegawaiKontrak, jamKerja, gajiKontrak);
-
-        System.out.println("Total Gaji " + namaPegawaiTetap + " : " + pegawaiTetap.totalGaji());
-        System.out.println("Total Gaji " + namaPegawaiKontrak + " : " + pegawaiKontrak.totalGaji());
+            // Press Shift+F9 to start debugging your code. We have set one breakpoint
+            // for you, but you can always add more by pressing Ctrl+F8.
+            System.out.println("i = " + i);
+        }
     }
 }
