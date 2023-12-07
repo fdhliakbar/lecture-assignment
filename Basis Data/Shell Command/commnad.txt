@@ -24,3 +24,12 @@ MariaDB [basdat_join]> select * from products;
 Empty set (0.002 sec)
 
 desc products;  // menampilkan nama, tipe data, key dll dalam sebuah table
+
+// Mengubah strcuture tabel dengan alter table
+Add new column
+MariaDB [basdat_join]> alter table customers add gender varchar(15) after n
+ama;
+Query OK, 0 rows affected (0.005 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Mengubah nama klolom
