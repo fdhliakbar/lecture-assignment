@@ -93,10 +93,10 @@ public:
         }
     }
 
-
-
-
     // PERTEMUAN 9 POHON(TREE)
+    int batasTempo() {
+
+    }
 
 
     // PERTEMUAN 10 SEKUEN
