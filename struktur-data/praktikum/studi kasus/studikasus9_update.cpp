@@ -41,6 +41,53 @@ struct Pesanan {
 
 int hargaBelumSelesai;
 
+struct Node {
+    string mobil;
+    Node* left;
+    Node* right;
+
+    Node(const string& m) : mobil(m), left(nullptr), right(nullptr) {}
+};
+
+class TreeManagement {
+public:
+    TreeManagement() : root(nullptr) {}
+
+    void tambahMobilKeTree(const string& mobil) {
+        root = tambahMobil(root, mobil);
+    }
+
+    void tampilkanDaftarMobilTree() {
+        cout << "Daftar Mobil yang Telah Dipesan (dengan tree):" << '\n';
+        tampilkanMobilTree(root);
+    }
+
+private:
+    Node* root;
+
+    Node* tambahMobil(Node* node, const string& mobil) {
+        if (node == nullptr) {
+            return new Node(mobil);
+        }
+
+        if (mobil < node->mobil) {
+            node->left = tambahMobil(node->left, mobil);
+        } else if (mobil > node->mobil) {
+            node->right = tambahMobil(node->right, mobil);
+        }
+
+        return node;
+    }
+
+    void tampilkanMobilTree(Node* node) {
+        if (node != nullptr) {
+            tampilkanMobilTree(node->left);
+            cout << node->mobil << '\n';
+            tampilkanMobilTree(node->right);
+        }
+    }
+};
+
 class PenyewaanMobil
 {
 public:
@@ -93,10 +140,10 @@ public:
         }
     }
 
-    // PERTEMUAN 9 POHON(TREE)
-    void imageMobil() {
 
-    }
+
+
+    // PERTEMUAN 9 POHON(TREE)
 
 
     // PERTEMUAN 10 SEKUEN
@@ -359,6 +406,7 @@ int main()
             rentalCar.tampilkanDaftarMobil();
 
             cout << endl;
+
         }
         else if (pilihan == 2) {
             rentalCar.tampilkanDaftarMobil();
