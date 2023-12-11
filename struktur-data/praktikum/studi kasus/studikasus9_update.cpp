@@ -13,13 +13,14 @@ struct Mobil
 
 struct ATMTransaction
 {
+    int nomorPesanan; // Tambahkan nomor pesanan
     string bank;
     double amount;
+    int pesananCounter;
     ATMTransaction* next;
 
-    ATMTransaction(const string& b, double amt) : bank(b), amount(amt), next(nullptr) {}
+    ATMTransaction(int nomorPesanan, const string& b, double amt) : pesananCounter(nomorPesanan), bank(b), amount(amt), next(nullptr) {}
 };
-
 
 struct Struk
 {
@@ -60,7 +61,7 @@ public:
     // PERTEMUAN 7 QUEUE WITH ARRAY CIRCULAR
 
 
-    void tambahDenda(const string& mobil, double denda)
+    void kekuranganBayar(const string& mobil, double denda)
     {
         DendaTransaction* newTransaction = new DendaTransaction(mobil, denda);
         overdueTransactions.push(newTransaction);
@@ -114,10 +115,11 @@ public:
         if (!transaksiStack.empty())
         {
             cout << "Daftar Transaksi Stack: " << "\n";
+            cout <<"Kode Pesanan||Jenis Transaksi||Total\n";
             while (!transaksiStack.empty())
             {
                 ATMTransaction transaksi = transaksiStack.top();
-                cout << transaksi.bank << " - " << transaksi.amount << "\n\n";
+                cout <<transaksi.nomorPesanan<<" 	- 	" <<transaksi.bank << " 	-	 " << transaksi.amount << "\n\n";
                 transaksiStack.pop();
             }
         }
@@ -201,7 +203,7 @@ public:
                 int periodeCicilan;
                 cout << "Tambah Cicilan berhasil dimasukkan" << "\n";
 
-                tambahDenda(jenisMobil, periodeCicilan);
+                kekuranganBayar(jenisMobil, periodeCicilan);
 
 
             }
@@ -211,22 +213,23 @@ public:
         }
     }
 
-    void bayarDenganATM(const string& bank, double amount)
+    void bayarDenganATM(int nomorPesanan,const string& bank, double amount)
     {
+        
         // Tambahkan informasi transaksi ke dalam stack
-        ATMTransaction* newTransaction = new ATMTransaction(bank, amount);
-        if (atmTransactionsHead == nullptr)
-        {
-            atmTransactionsHead = newTransaction;
-            atmTransactionsTail = newTransaction;
-        }
-        else
-        {
-            atmTransactionsTail->next = newTransaction;
-            atmTransactionsTail = newTransaction;
-        }
+    ATMTransaction* newTransaction = new ATMTransaction(nomorPesanan++, bank, amount); // pesananCounter merupakan variabel global yang mendeklarasikan nomor pesanan
+    if (atmTransactionsHead == nullptr)
+    {
+        atmTransactionsHead = newTransaction;
+        atmTransactionsTail = newTransaction;
+    }
+    else
+    {
+        atmTransactionsTail->next = newTransaction;
+        atmTransactionsTail = newTransaction;
+    }
 
-        cout << "Transaksi ATM sebesar " << amount << " dengan bank " << bank << " berhasil." << '\n';
+        cout << "Transaksi ATM sebesar " << amount << " dengan bank " << bank <<" kode pembayaran "<< nomorPesanan<<" berhasil." << '\n';
         //system("pause");
         //system("cls");
         tampilkanStruk();
@@ -240,7 +243,7 @@ public:
     int index = 1;
     while (currentTransaction != nullptr)
     {
-        cout << index << ". Bank: " << currentTransaction->bank << ", Jumlah: " << currentTransaction->amount << '\n';
+        cout <<"kode pesanan : "<< currentTransaction->nomorPesanan << ". Bank: " << currentTransaction->bank << ", Jumlah: " << currentTransaction->amount << '\n';
         currentTransaction = currentTransaction->next;
         index++;
     }
@@ -317,6 +320,7 @@ private:
     struct DendaTransaction {
         string mobil;
         double denda;
+        
         DendaTransaction* next;
 
         DendaTransaction(const string& m, double d) : mobil(m), denda(d), next(nullptr) {}
@@ -330,11 +334,12 @@ private:
     Struk* strukHead;
     Struk* strukTail;
 };
-
+int pesananCounter = 1;
 int main()
 {
     PenyewaanMobil rentalCar;
     short int pilihan;
+    int nomorPesan = 0;
     double totalAmount, batasWaktu;
     bool selesai = false;
 
@@ -342,12 +347,13 @@ int main()
         // MENU PROGRAM
         cout << "~~ Program Pembayaran ~~~" << '\n';
         cout << "1. Tampilkan Daftar Mobil" << '\n';
-        cout << "1. Pesan Sewa Mobil" << '\n';
+        cout << "2. Pesan Sewa Mobil" << '\n';
         cout << "3. Riwayat Transaksi" << '\n';
-        cout << "4. Riwayat Denda" << '\n';
+        cout << "4. Kekurangan pembayaran" << '\n';
         cout << "5. Keluar(Exit)" << '\n';
         cout << "Masukkan Pilihan Anda : ";
         cin >> pilihan;
+        cin.ignore();
 
         if (pilihan == 1) {
             rentalCar.tampilkanDaftarMobil();
@@ -398,7 +404,7 @@ int main()
                 
                 cout << "Masukkan total pembayaran dengan ATM: ";
                 cin >> totalAmount;
-                rentalCar.bayarDenganATM(bank, totalAmount);
+                rentalCar.bayarDenganATM(nomorPesan,bank, totalAmount);
 
                 cout << "Apakah Anda ingin melihat daftar transaksi ATM? (1. Ya / 2. Tidak): ";
                 int viewTransaksi;
