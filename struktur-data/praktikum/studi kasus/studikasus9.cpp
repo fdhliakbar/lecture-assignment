@@ -38,7 +38,7 @@ struct Pesanan {
     Pesanan(const string& mobil) : namaMobil(mobil), prev(nullptr), next(nullptr) {}
 };
 
-int hargaBelumSelesai;
+int hargaBelumSelesai;  //Temp untuk denda
 
 class PenyewaanMobil
 {
