@@ -1,0 +1,49 @@
+// DATA DALAM DATABASE sistemKos
+
+MariaDB [sistemKos]> DESC penyewa;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| id_penyewa    | char(4)     | NO   | PRI | NULL    |       |
+| nama_depan    | varchar(20) | YES  |     | NULL    |       |
+| nama_belakang | varchar(20) | YES  |     | NULL    |       |
+| alamat        | varchar(50) | YES  |     | NULL    |       |
+| jenis_kelamin | char(1)     | YES  |     | NULL    |       |
+| usia          | int(2)      | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+6 rows in set (0.012 sec)
+
+---------------------      END       ---------------------
+
+// TRIGGER
+
+DELIMITER //
+CREATE TRIGGER trigger_name
+{BEFORE | AFTER} {INSERT | UPDATE | DELETER}
+        ON table_name
+        FOR EACH ROW
+BEGIN
+        SQL_Code
+END ??
+
+DELIMITER ;
+
+// STORED PROCEDURE
+
+MariaDB [sistemKos]> DELIMITER //
+MariaDB [sistemKos]> CREATE PROCEDURE selectTagihan()
+    -> BEGIN
+    -> SELECT id_tagihan,id_penyewa,id_kamar,tanggal_tagihan FROM tagihan;
+    -> END //
+Query OK, 0 rows affected (0.002 sec)
+
+MariaDB [sistemKos]> DELIMITER ;
+MariaDB [sistemKos]> CALL selectTagihan();
+
++------------+------------+----------+-----------------+
+| id_tagihan | id_penyewa | id_kamar | tanggal_tagihan |
++------------+------------+----------+-----------------+
+| A421       | 201        | 402      | 2024-02-01      |
+| B012       | 200        | 401      | 2023-12-12      |
+| S200       | 202        | 403      | 2024-08-10      |
++------------+------------+----------+-----------------+
