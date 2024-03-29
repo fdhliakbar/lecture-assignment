@@ -45,8 +45,8 @@ int main() {
     }
     cout << "\n============================" << endl;
     cout << "Jumlah Data : " << sum << endl;
-    cout << "Rata-Rata : " << sum << endl;
-    cout << "Terkecil : " << sum << endl;
-    cout << "Terbesar : " << sum << endl;
+    cout << "Rata-Rata : " << sum / a << endl;
+    cout << "Terkecil : " << min << endl;
+    cout << "Terbesar : " << max << endl;
     cout << "============================" << endl;
 }
