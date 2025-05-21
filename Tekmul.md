@@ -6,12 +6,12 @@ Berikut rangkuman materi **UTS** berdasarkan file yang kamu unggah (Pertemuan 2�
 
 ### Jenis Kamera:
 
-1. **SLR** – Menggunakan cermin dan prisma untuk melihat langsung melalui lensa.
-2. **DSLR** – Digital SLR, kualitas gambar tinggi dan fleksibel.
+1. **SLR(Single Lens Reflect)** – Menggunakan cermin dan prisma untuk melihat langsung melalui lensa.
+2. **DSLR (Digital Single Lens Reflect)** – Digital SLR, kualitas gambar tinggi dan fleksibel.
 3. **Compact Camera** – Mudah dibawa, otomatis, cocok untuk pemula.
 4. **Action Cam** – Tahan kondisi ekstrem, cocok untuk olahraga/outdoor.
 5. **Mirrorless** – Tanpa cermin, ringan, kualitas seperti DSLR.
-6. **Full-frame** – Sensor besar, kualitas tinggi, performa ISO baik.
+6. **Full-frame** – Tipe kamera dengan sensor yang besar bisa menangkap lebih banyak informasi warna dan kualitas tinggi, dan performa ISO baik.
 7. **Kamera Ponsel** – Praktis, mudah digunakan, berkembang pesat.
 
 ### Pengaturan Kamera Sebelum Memotret:
