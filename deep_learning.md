@@ -1,3 +1,9 @@
+## 📌 Table of Contents
+
+1. [Perhitungan Convolution](#-perhitungan-convolution)
+2. a
+
+
 ## Perhitungan Convolution
 Convolution menghitung hasil dengan menggeser filter (kernel) di atas input dan melakukan perkalian elemen-per-elemen, lalu menjumlahkannya.
 
@@ -56,6 +62,10 @@ Result:
 8 9
 ```
 
+## Arsitektur CNN
+![image](https://github.com/user-attachments/assets/0b25b218-cfd8-4624-9328-2417c8056c74)
+
+
 ## Tahap Transfer Learning
 1. Pilih pre-trained model
    - misalkan VGG16, MobileNet, EfficientNet dll
@@ -74,3 +84,12 @@ Data latih kecil (< 1000 gambar) | ✅ Sangat cocok
 Komputasi terbatas (CPU/GPU) |	✅ Cocok
 Butuh hasil cepat	| ✅ Cocok
 Dataset mirip ImageNet	| ✅ Sangat optimal
+
+Perbandingan Ringkas:
+Aspek	Image Classification	Object Detection	Image Segmentation
+Input	Gambar penuh	Gambar penuh	Gambar penuh
+Output	Label	Label + Bounding Box	Label untuk setiap piksel
+Berapa objek?	1	Banyak	Banyak
+Apakah tahu posisi?	❌ Tidak	✅ Bounding Box	✅ Sangat detail (per piksel)
+Contoh Model	VGG, ResNet	YOLO, SSD, Faster R-CNN	U-Net, DeepLab, Mask R-CNN
+Aplikasi	Klasifikasi gambar	Deteksi objek (mobil, orang)	Medis, jalan, satelit, deteksi tumor
