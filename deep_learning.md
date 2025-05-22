@@ -13,26 +13,57 @@ Filter/Kernel (2x2):
 0  -1  
 ```
 Langkah-langkah (stride 1, tanpa padding):
-
-Posisi 1 (top-left):
 ```bash
+Posisi 1 (top-left):
+
 Input:   Kernel:
 1 2     x   1 0
 4 5         0 -1
 (1×1) + (2×0) + (4×0) + (5×-1) = 1 + 0 + 0 - 5 = -4
-```bash
 
 Posisi 2 (top-right):
-```bash
+
 Input:   Kernel:
 2 0     x   1 0
 5 6         0 -1
 (2x1) + (0x0) + (5x0) + (6x-1) = 2 + 0 + 0 - 6 = -4
 Sampai selesai(end)
-```bash
 
 Hasil
-```bash
+
 -4 -4
 -4 -4
 ```
+
+## MaxPooling
+MaxPooling bertujuan mengurangi ukuran (dimensi) sambil mempertahankan informasi penting dengan mengambil nilai maksimum dari window tertentu.
+Stride adalah berapa langkah (step) filter berpindah saat melakukan operasi convolution atau max pooling.
+Stride = 1 → filter bergeser 1 piksel per langkah (lebih detail).
+Stride = 2 → filter bergeser 2 piksel per langkah (lebih cepat, lebih kecil output-nya).
+Misal input hasil dari layer sebelumnya (4x4):
+```bash
+1  3  2  1  
+4  6  5  0  
+7  8  9  3  
+2  4  1  5  
+Dengan:
+
+Ukuran kernel (pool size): 2x2
+Stride: 2
+
+Result:
+6 5
+8 9
+```
+
+## Tahap Transfer Learning
+1. Pilih pre-trained model
+misalkan VGG16, MobileNet, EfficientNet dll
+2. Load model
+   - gunakan model yang sudah disediakan framework seperri keras.applications
+3. Freeze layer
+jangan latih layer awal atau fitur umu, supaya tidak hilang
+4. Tambahkan layer output baru
+tambahkan layer sesuai sesuai jumlah kelas dataset (misalnya 3 kelas: anjing,kucing,monyet)
+5. Train model
+Latih model dengan dataset baru yang lebih kecil
