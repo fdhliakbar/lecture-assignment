@@ -58,12 +58,19 @@ Result:
 
 ## Tahap Transfer Learning
 1. Pilih pre-trained model
-misalkan VGG16, MobileNet, EfficientNet dll
-2. Load model
+   - misalkan VGG16, MobileNet, EfficientNet dll
+3. Load model
    - gunakan model yang sudah disediakan framework seperri keras.applications
-3. Freeze layer
-jangan latih layer awal atau fitur umu, supaya tidak hilang
-4. Tambahkan layer output baru
-tambahkan layer sesuai sesuai jumlah kelas dataset (misalnya 3 kelas: anjing,kucing,monyet)
-5. Train model
-Latih model dengan dataset baru yang lebih kecil
+4. Freeze layer
+   - jangan latih layer awal atau fitur umu, supaya tidak hilang
+5. Tambahkan layer output baru
+   - tambahkan layer sesuai sesuai jumlah kelas dataset (misalnya 3 kelas: anjing,kucing,monyet)
+6. Train model
+   - Latih model dengan dataset baru yang lebih kecil
+
+## Kapan Transfer Learning Digunakan?
+Kondisi | Transfer Learning Cocok?
+Data latih kecil (< 1000 gambar) | ✅ Sangat cocok
+Komputasi terbatas (CPU/GPU) |	✅ Cocok
+Butuh hasil cepat	| ✅ Cocok
+Dataset mirip ImageNet	| ✅ Sangat optimal
